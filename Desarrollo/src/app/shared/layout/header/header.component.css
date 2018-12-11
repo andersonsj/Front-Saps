@@ -1,0 +1,33 @@
+.header {
+    background: white;
+    box-shadow: 5px 2px 14px #888888;
+    height: 52px;
+}
+
+.header a {
+    color: rgb(84, 84, 196);
+    border: black;
+    font-weight: bold;
+}
+
+.navegador {
+    display: inline-block;
+   /*  padding-top: .3125rem;
+    padding-bottom: .3125rem; */
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.titulo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logoconstructor {}
+
+.logohomecenter {
+    padding-top: 14px;
+}

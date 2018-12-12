@@ -7,9 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CotizacionProductoComponent implements OnInit {
 
+  private cantidadProducto: any;
+  private numero = [];
+  private producto: Array<any>;
+  private habilita: boolean = false;
+ 
+  private infoProducto: Object = {
+    sku: 123456,
+    nombre: "producto",
+    cantidad: 0,
+    precioUnidad: 0
+  };
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  contador() {
+    this.numero.length = this.numero.length + 1;
+    this.numero[this.numero.length - 1] = this.infoProducto;
+    console.log('Contando tabs');
+    console.log(this.numero.length);
+    this.habilita = true;
+    console.log(this.habilita);
+  } 
+
+  restarCantidad() {
+    if (this.cantidadProducto > 1) {
+      this.cantidadProducto = this.cantidadProducto - 1;
+    }
+  }
+
+  sumarCantidad() {
+    this.cantidadProducto = this.cantidadProducto + 1;
   }
 
 }

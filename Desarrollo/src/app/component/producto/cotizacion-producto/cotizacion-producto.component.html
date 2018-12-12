@@ -1,3 +1,87 @@
-<p>
-  cotizacion-producto works!
-</p>
+<table class="table table-striped ">
+  <thead>
+  <tr>
+      <th style="width: 14%">
+          Sku
+      </th>
+      <th style="width: 30%">
+          Producto
+      </th>
+      <th style="width: 14%">
+          Cantidad
+      </th>
+      <th style="width: 14%">
+          Precio und.
+      </th>
+      <th style="width: 14%">
+          Precio total
+      </th>
+      <th style="width: 14%">
+      </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let producto of numero" >
+      <td>
+        <div>
+          <input id="input-sku" class="form-control col-md-12 " [ngClass]="{'habilita-input':habilita}" type="text"  (keydown.Tab)="contador()" (keydown.Enter)="contador()"id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" [ngClass]="{'habilita-input':habilita}" type="text" id="txtCantidad" name="txtCantidad" />
+        </div>  
+      </td>
+      <td>
+        <div class="form-group fila-1" >
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMenos" (click)="restarCantidad()">-</button>
+          <input class="form-control col-md-4 input-inicial" type="text" [ngClass]="{'habilita-input-cantidad':habilita}" id="txtCantidad" name="txtCantidad" value="{{cantidadProducto}}" />
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMas" (click)="sumarCantidad()">+</button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" type="text" disabled  [ngClass]="{'habilita-input':habilita}"id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" type="text" disabled [ngClass]="{'habilita-input':habilita}" id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td></td>
+  </tr>
+  <tr>
+      <td>
+        <div>
+          <input class="form-control col-md-12 " type="text"  (keydown.Tab)="contador()" (keydown.Enter)="contador()"id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" type="text" id="txtCantidad" name="txtCantidad" />
+        </div>  
+      </td>
+      <td>
+        <div class="form-group fila-1" >
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMenos" (click)="restarCantidad()">-</button>
+          <input class="form-control col-md-4 input-inicial" type="text" id="txtCantidad" name="txtCantidad" value="{{cantidadProducto}}" />
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMas" (click)="sumarCantidad()">+</button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" type="text" disabled  id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td>
+        <div>
+          <input class="form-control col-md-12 input-inicial" type="text" disabled id="txtCantidad" name="txtCantidad"  />
+        </div>  
+      </td>
+      <td></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

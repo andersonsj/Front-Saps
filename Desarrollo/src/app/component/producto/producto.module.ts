@@ -12,6 +12,9 @@ import { ProductoRouting } from 'src/app/core/routes/producto.routing';
   imports: [
     CommonModule,
     ProductoRouting
+  ],
+  exports: [
+    CotizacionProductoComponent
   ]
 })
 export class ProductoModule { }

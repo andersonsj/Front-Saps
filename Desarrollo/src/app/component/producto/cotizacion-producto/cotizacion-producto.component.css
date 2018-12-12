@@ -1,0 +1,82 @@
+th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2
+  }
+
+  .table-striped>tbody>tr:nth-child(odd)>td,
+  .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #ffffff;
+    border-right-color: #cdd1cd;
+    border-right-style: solid;
+    border-right-width: 1px;
+  
+  }
+  
+  .table-striped>tbody>tr:nth-child(even)>td,
+  .table-striped>tbody>tr:nth-child(even)>th {
+    background-color: #f2f2f2;
+    border-right-color: #cdd1cd;
+    border-right-style: solid;
+    border-right-width: 1px;
+  }
+  
+  .table>tbody>tr>td:last-child{
+    border-right: 0;
+  }
+  
+  .fila-1 {
+      position: initial;
+      overflow: hidden;
+      margin: 0% auto 0 auto;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  #btn-cantidadMenos {
+      float: left;
+      padding-right: 5px;
+      text-align: center;
+  }
+  
+  #txt-cantidad {
+      float: left;
+      padding-right: 5px;
+  }
+  
+  #btn-cantidadMas {
+      float: left;
+      text-align: center;
+  }
+
+  .input-inicial {
+    background-color: #f7f7f7;
+    
+  }
+
+  .boton-inicial{
+    background-color: #b1b0b0;
+    border-color: #b1b0b0;
+  }
+  
+  .habilita-input{
+    background-color: inherit;
+    border: none ;
+  }
+
+  .habilita-input-cantidad{
+    background-color: inherit !important;
+  }
+
+  .habilita-boton{
+    color: #ffffff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+  }
+  
+  .table>tbody:last-child{
+    background-color: #007bff !important;
+  }

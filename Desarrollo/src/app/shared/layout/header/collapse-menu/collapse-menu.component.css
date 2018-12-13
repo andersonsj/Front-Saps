@@ -1,7 +1,3 @@
-body {
-    font-family: "Lato", sans-serif;
-}
-
 .sidenav {
     height: 100%;
     position: fixed;
@@ -11,17 +7,17 @@ body {
     background-color: whitesmoke;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
-    width: 70px;
+    padding-top: 0px;
+    width: 62px;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
     font-size: 15px;
     color: #818181;
+    /* padding: 8px 8px 8px 32px;
+    text-decoration: none;
     display: block;
-    transition: 0.3s;
+    transition: 0.3s; */
 }
 
 .sidenav em {
@@ -30,7 +26,8 @@ body {
 }
 
 .sidenav em:hover {
-    color: blue;
+    color: white;
+    text-shadow: -1px 0 blue, 0 1px blue, 1px 0 blue, 0 -1px blue;
 }
 
 .sidenav a:hover {
@@ -61,4 +58,14 @@ body {
     .sidenav a {
         font-size: 18px;
     }
+}
+
+.sidenav div:hover {
+    background-color: white;
+}
+
+.sidenav div {
+    text-align: center;
+    height: 52px;
+    padding: 11px;
 }

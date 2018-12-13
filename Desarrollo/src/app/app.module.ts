@@ -13,8 +13,6 @@ import { Routing } from './app-routing';
 @NgModule({
   declarations: [
     AppComponent
-    
-
   ],
   imports: [
     BrowserModule,

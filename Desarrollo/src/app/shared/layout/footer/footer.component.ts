@@ -10,12 +10,14 @@ export class FooterComponent implements OnInit {
 
   constructor(private data: DataService) { }
 
-  private total;
-  private precioPago = 0;
-  private precioFlete;
+  private total = '0';
+  private precioPago = '0';
+  private precioFlete = '0';
 
   ngOnInit() {
     this.total = localStorage.getItem('precioTotal');
+    this.precioPago = localStorage.getItem('precioPago');
+    this.precioFlete = localStorage.getItem('precioFlete');
   }
 
 }

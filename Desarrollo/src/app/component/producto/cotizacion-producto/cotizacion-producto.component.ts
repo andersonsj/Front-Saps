@@ -21,10 +21,12 @@ export class CotizacionProductoComponent implements OnInit {
   };
 
   constructor(private data: DataService) {
+    this.data.guardarLocal('precioTotal', '0');
+    this.data.guardarLocal('precioPago', '0');
+    this.data.guardarLocal('precioFlete', '0');
   }
 
   ngOnInit() {
-  
   }
 
   contador() {
@@ -34,13 +36,12 @@ export class CotizacionProductoComponent implements OnInit {
     console.log(this.numero.length);
     this.habilita = true;
     console.log(this.habilita);
-    this.data.guardarLocal('precioTotal', '1');
+
   }
 
   restarCantidad() {
     if (this.cantidadProducto > 1) {
       this.cantidadProducto = this.cantidadProducto - 1;
-      this.data.guardarLocal('precioTotal', '2');
     }
   }
 

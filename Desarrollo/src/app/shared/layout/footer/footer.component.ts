@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
+
+  private total;
+  private precioPago = 0;
+  private precioFlete;
 
   ngOnInit() {
+    this.total = localStorage.getItem('precioTotal');
   }
 
 }

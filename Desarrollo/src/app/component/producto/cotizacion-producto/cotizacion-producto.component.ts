@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/component/producto/producto.service';
 import { Producto } from 'src/app/core/model/producto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-cotizacion-producto',
@@ -26,7 +27,7 @@ export class CotizacionProductoComponent implements OnInit {
   private habilita: boolean = false;
   private sw: boolean;
 
-  constructor(private productoService: ProductoService, private formBuilder: FormBuilder) { }
+  constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) { }
 
   ngOnInit() {
     /*this.productoForm = this.formBuilder.group({
@@ -77,7 +78,6 @@ export class CotizacionProductoComponent implements OnInit {
     this.habilita = true;
     console.log(this.habilita);
     
-    
   }
 
   restarCantidad(cont: number) {
@@ -89,6 +89,7 @@ export class CotizacionProductoComponent implements OnInit {
       this.infoProducto.cantidad = this.cantidadProducto;
       this.infoProducto.precioTotal = this.infoProducto.precioUnidad * this.infoProducto.cantidad;
       console.log(this.infoProducto);
+      this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
       this.numero[cont] =  this.infoProducto;
       this.infoProducto={
         sku: null,
@@ -97,6 +98,7 @@ export class CotizacionProductoComponent implements OnInit {
         precioUnidad: null,
         precioTotal: null
       };
+      
     }
     
 
@@ -110,6 +112,7 @@ export class CotizacionProductoComponent implements OnInit {
     this.infoProducto.cantidad = this.cantidadProducto;
     this.infoProducto.precioTotal = this.infoProducto.precioUnidad * this.infoProducto.cantidad;
       console.log(this.infoProducto);
+      this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
       this.numero[cont] =  this.infoProducto;
       this.infoProducto={
         sku: null,

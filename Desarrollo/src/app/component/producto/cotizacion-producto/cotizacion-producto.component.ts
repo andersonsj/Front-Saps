@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-cotizacion-producto',
@@ -8,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class CotizacionProductoComponent implements OnInit {
 
   private cantidadProducto: any;
-  private numero = [];
+  private numero = [];
   private producto: Array<any>;
   private habilita: boolean = false;
- 
+
   private infoProducto: Object = {
     sku: 123456,
     nombre: "producto",
@@ -19,23 +20,27 @@ export class CotizacionProductoComponent implements OnInit {
     precioUnidad: 0
   };
 
-  constructor() { }
+  constructor(private data: DataService) {
+  }
 
   ngOnInit() {
+  
   }
 
   contador() {
-    this.numero.length = this.numero.length + 1;
+    this.numero.length = this.numero.length + 1;
     this.numero[this.numero.length - 1] = this.infoProducto;
     console.log('Contando tabs');
     console.log(this.numero.length);
     this.habilita = true;
     console.log(this.habilita);
-  } 
+    this.data.guardarLocal('precioTotal', '1');
+  }
 
   restarCantidad() {
     if (this.cantidadProducto > 1) {
       this.cantidadProducto = this.cantidadProducto - 1;
+      this.data.guardarLocal('precioTotal', '2');
     }
   }
 

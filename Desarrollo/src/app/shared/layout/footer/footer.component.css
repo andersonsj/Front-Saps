@@ -16,4 +16,53 @@
     background-color: #e5e5e5;
     color: #ffffff;
     border: aliceblue;
+    font-size: 15px;
+    float: left;
+}
+
+.footer label {
+    position: absolute;
+    font-size: 15px;
+    color: #2e3239;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+.total {
+    top: -25px
+}
+
+.flete {
+    top: -4px;
+}
+
+.precio {
+    top: 30px;
+    font-weight: bold;
+}
+
+.fleteValor {
+    font-size: 11px;
+    top: -2px;
+    color: #c8c9ca;
+    position: absolute;
+}
+
+.precioValor{
+    font-size: 22px;
+    color: #c8c9ca;
+    font-weight: bold;
+    top: 26px;
+    position: absolute;
+}
+
+.footer hr {
+    color: #999999;
+    width: 254px;
+    height: 1px;
+    top: 4px;
+    position: absolute;
 }

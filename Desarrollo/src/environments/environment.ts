@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   ambiente: 'desarrollo',
-  ip: 'http://10.23.18.240:'
+  ip: 'http://10.23.14.240:'
 };
 
 /*

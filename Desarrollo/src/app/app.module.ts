@@ -9,12 +9,12 @@ import { ClienteModule } from './component/cliente/cliente.module';
 import { ProductoModule } from './component/producto/producto.module';
 import { HomeModule } from './component/home/home.module';
 import { Routing } from './app-routing';
+import { Configuration } from './util/endpoint/configuration';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent
-    
-
   ],
   imports: [
     BrowserModule,
@@ -22,13 +22,14 @@ import { Routing } from './app-routing';
     HttpClientModule,
     Routing,
     CoreModule,
+    ReactiveFormsModule,
     SharedModule,
     EmpleadoModule,
     ClienteModule,
     ProductoModule,
     HomeModule
   ],
-  providers: [],
+  providers: [Configuration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

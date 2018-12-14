@@ -1,4 +1,9 @@
-<table class="table table-striped ">
+<div class="container-cotizacion">
+<div class="titulo">
+  <h4>Cotización Abierta</h4>
+</div>
+<div class="lista-productos">
+<table class="table table-striped table-fixed table-wrapper-scroll-y">
   <thead>
   <tr>
       <th style="width: 14%">
@@ -21,67 +26,71 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let producto of numero" >
+  <tr *ngFor="let producto of numero; let cont = index">
       <td>
         <div>
-          <input id="input-sku" class="form-control col-md-12 " [ngClass]="{'habilita-input':habilita}" type="text"  (keydown.Tab)="contador()" (keydown.Enter)="contador()"id="txtCantidad" name="txtCantidad"  />
+          <input id="input-sku" class="form-control col-md-12 " [ngClass]="{'habilita-input':habilita}" type="text" value="{{producto.sku}}"/>
         </div>  
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" [ngClass]="{'habilita-input':habilita}" type="text" id="txtCantidad" name="txtCantidad" />
+          <input id="txt-nombre" class="form-control col-md-12" [ngClass]="{'habilita-input':habilita}" type="text"  name="txt-nombre" value="{{producto.nombre}}"/>
         </div>  
       </td>
       <td>
         <div class="form-group fila-1" >
-          <button class="btn btn-primary col-md-3 boton-inicial" disabled [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMenos" (click)="restarCantidad()">-</button>
-          <input class="form-control col-md-4 input-inicial" type="text" [ngClass]="{'habilita-input-cantidad':habilita}" id="txtCantidad" name="txtCantidad" value="{{cantidadProducto}}" />
-          <button class="btn btn-primary col-md-3 boton-inicial" disabled [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMas" (click)="sumarCantidad()">+</button>
+          <button class="btn btn-primary col-md-3 " [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMenos" (click)="restarCantidad(cont)">-</button>
+          <input  class="form-control col-md-4 " type="text" [ngClass]="{'habilita-input-cantidad':habilita}" id="txt-cantidad" name="txt-cantidad"  value="{{producto.cantidad}}"/>
+          <button class="btn btn-primary col-md-3 " [ngClass]="{'habilita-boton':habilita}" id="btn-cantidadMas" (click)="sumarCantidad(cont)">+</button>
         </div>
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" type="text" disabled  [ngClass]="{'habilita-input':habilita}"id="txtCantidad" name="txtCantidad"  />
+          <input id="txt-precio"  class="form-control col-md-12 " type="text"  [ngClass]="{'habilita-input':habilita}" value="{{producto.precioUnidad | currency}}" />
         </div>  
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" type="text" disabled [ngClass]="{'habilita-input':habilita}" id="txtCantidad" name="txtCantidad"  />
+          <input id="txt-precio-total"  class="form-control col-md-12 " type="text" [ngClass]="{'habilita-input':habilita}" value="{{producto.precioTotal | currency}}"  />
         </div>  
       </td>
       <td></td>
   </tr>
+
   <tr>
       <td>
         <div>
-          <input class="form-control col-md-12 " type="text"  (keydown.Tab)="contador()" (keydown.Enter)="contador()"id="txtCantidad" name="txtCantidad"  />
+          <input class="form-control col-md-12" #buscarSku type="text"  (keydown.Tab)="contador(buscarSku.value)" (keydown.Enter)="buscarProducto(buscarSku.value)" name="buscarSku"  />
         </div>  
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" type="text" id="txtCantidad" name="txtCantidad" />
+          <input class="form-control col-md-12 input-inicial" disabled type="text" />
         </div>  
       </td>
       <td>
         <div class="form-group fila-1" >
-          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMenos" (click)="restarCantidad()">-</button>
-          <input class="form-control col-md-4 input-inicial" type="text" id="txtCantidad" name="txtCantidad" value="{{cantidadProducto}}" />
-          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMas" (click)="sumarCantidad()">+</button>
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMenos" >-</button>
+          <input class="form-control col-md-4 input-inicial" type="text" disabled id="txtCantidad" name="txtCantidad" />
+          <button class="btn btn-primary col-md-3 boton-inicial" disabled id="btn-cantidadMas" >+</button>
         </div>
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" type="text" disabled  id="txtCantidad" name="txtCantidad"  />
+          <input class="form-control col-md-12 input-inicial" type="text" disabled  />
         </div>  
       </td>
       <td>
         <div>
-          <input class="form-control col-md-12 input-inicial" type="text" disabled id="txtCantidad" name="txtCantidad"  />
+          <input class="form-control col-md-12 input-inicial" type="text" disabled />
         </div>  
       </td>
       <td></td>
   </tr>
+  
   </tbody>
   <tfoot>
   </tfoot>
 </table>
+</div>
+</div>

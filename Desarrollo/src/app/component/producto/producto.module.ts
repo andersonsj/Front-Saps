@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductoComponent } from './producto.component';
 import { CotizacionProductoComponent } from './cotizacion-producto/cotizacion-producto.component';
 import { ProductoRouting } from 'src/app/core/routes/producto.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { ProductoRouting } from 'src/app/core/routes/producto.routing';
   ],
   imports: [
     CommonModule,
-    ProductoRouting
+    ProductoRouting,
+    ReactiveFormsModule
   ],
   exports: [
     CotizacionProductoComponent

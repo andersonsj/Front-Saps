@@ -27,16 +27,13 @@ export class CotizacionProductoComponent implements OnInit {
   private habilita: boolean = false;
   private sw: boolean;
 
-  constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) { }
+  constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) { 
+    this.data.guardarLocal('precioTotal', '0');
+    this.data.guardarLocal('precioPago', '0');
+    this.data.guardarLocal('precioFlete', '0');
+  }
 
   ngOnInit() {
-    /*this.productoForm = this.formBuilder.group({
-      txtSku : ['', Validators.required],
-      txtNombre: ['', Validators.required],
-      txtCantidad: ['', Validators.required],
-      txtPrecio: ['', Validators.required],
-      txtPrecioTotal: ['', Validators.required],
-    });*/
   }
 
   contador() {
@@ -67,17 +64,9 @@ export class CotizacionProductoComponent implements OnInit {
       precioUnidad: null,
       precioTotal: null
     };
-
-    /*
-    let i: any;
-    console.log("informacion for");
-    for(i = 0; this.numero.length; i++){
-      console.log(this.numero[i]);
-    }*/
     
     this.habilita = true;
     console.log(this.habilita);
-    
   }
 
   restarCantidad(cont: number) {
@@ -122,7 +111,7 @@ export class CotizacionProductoComponent implements OnInit {
         precioTotal: null
       };
   }
-  //91249
+
   buscarProducto(buscarSku: any) {
     console.log("lololololo");
     
@@ -133,8 +122,6 @@ export class CotizacionProductoComponent implements OnInit {
         console.log("length data.value");
         console.log(data.value);
         
-          
-          
         if (data.value.length == 1){
           this.sw = true;
           this.infoProducto.sku = this.datos[0].sku;

@@ -36,6 +36,11 @@ export class CotizacionProductoComponent implements OnInit {
   private sw: boolean;
 
 
+
+  private fichaTecnicaProducto: string;
+  private atributosFicha = [];
+  private atributosFicha3 = [];
+
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) {
     this.data.guardarLocal('precioTotal', '0');
     this.data.guardarLocal('precioPago', '0');
@@ -63,12 +68,13 @@ export class CotizacionProductoComponent implements OnInit {
       this.precioPagarCot.emit(this.infoProducto.precioTotal);
       this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
       this.numero[cont] = this.infoProducto;
+      this.precioTotal = 0;
       for (let j = 0; j < this.numero.length; j++) {
         this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
         console.log('entre');
       }
       this.valorTotalCot.emit(this.precioTotal);
-      this.precioPagarCot.emit(this.infoProducto.precioTotal);
+      this.precioPagarCot.emit(this.precioTotal);
       this.infoProducto = {
         sku: null,
         nombre: null,
@@ -90,12 +96,15 @@ export class CotizacionProductoComponent implements OnInit {
       console.log(this.infoProducto);
       this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
       this.numero[cont] =  this.infoProducto;
+      this.precioTotal = 0;
+      console.log("Este es el precio total previo: "+this.precioTotal);
       for (let j = 0; j < this.numero.length; j++) {
         this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
         console.log('entre');
       }
+      console.log("Este es el precio total despues: "+this.precioTotal);
       this.valorTotalCot.emit(this.precioTotal);
-      this.precioPagarCot.emit(this.infoProducto.precioTotal);
+      this.precioPagarCot.emit(this.precioTotal);
       this.infoProducto={
         sku: null,
         nombre: null,
@@ -120,6 +129,8 @@ export class CotizacionProductoComponent implements OnInit {
     this.numero[i] = this.infoProducto;
 
     console.log(this.numero);
+    this.precioTotal = 0;
+    console.log("Este es el precio total previo: "+this.precioTotal);
     for (let j = 0; j < this.numero.length; j++) {
       this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
       console.log('entre');
@@ -127,15 +138,10 @@ export class CotizacionProductoComponent implements OnInit {
     console.log('el precio est aqui');
     console.log(this.precioTotal);
     this.valorTotalCot.emit(this.precioTotal);
-    this.precioPagarCot.emit(this.infoProducto.precioTotal);
+    this.precioPagarCot.emit(this.precioTotal);
     
     console.log("length2");
     console.log(this.numero.length);
-
-    console.log("Tengo esto numero: ");
-    console.log(this.numero);
-    console.log("Muestro esto numero[0]: ");
-    console.log(this.numero[0]);
 
     this.infoProducto={
       sku: null,
@@ -199,16 +205,18 @@ export class CotizacionProductoComponent implements OnInit {
       }   
     }
     this.numero = productosTemp;
+    this.precioTotal = 0;
     for (let j = 0; j < this.numero.length; j++) {
       this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
       console.log('entre');
     }
     this.valorTotalCot.emit(this.precioTotal);
-    this.precioPagarCot.emit(this.infoProducto.precioTotal);
+    this.precioPagarCot.emit(this.precioTotal);
     console.log("length final"+this.numero.length);
     console.log(this.numero);
   }
 
+  
   lanzar() {
     // Usamos el método emit
     this.valorTotalCot.emit('2000000');

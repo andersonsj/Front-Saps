@@ -142,3 +142,12 @@ tr:nth-child(even) {
   margin-top: 50px;
   width: 93%;
 }
+
+.iconos_productos{
+  float: left;
+  margin: auto;
+}
+
+.containerImagenes{
+  display: flex;
+}

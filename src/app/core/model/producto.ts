@@ -6,4 +6,5 @@ export class Producto {
     cantidad: number;
     precioUnidad: number;
     precioTotal: number;
+    fichaTecnica: string
 }

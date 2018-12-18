@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         uglify: {
             js: { 
                 src: ['./Gruntfile.js'],
-                dest: './dist/FrontAsesoria/Gruntfile.js'
+                dest: './dist/front-saps/Gruntfile.js'
             }
         },
 
@@ -17,12 +17,12 @@ module.exports = function (grunt) {
             target: {
                 options: {
                     war_dist_folder: 'C:/Liberty Server/wlp/usr/servers/sapsserver/apps/', /* Folder where to generate the WAR. */
-                    war_name: 'war-angular'                /* The name fo the WAR file (.war will be the extension) */
+                    war_name: 'SODIMAC-SAPS'                /* The name fo the WAR file (.war will be the extension) */
 				},
                 files: [
                     {
                         expand: true,
-                        cwd: './dist/FrontAsesoria/',
+                        cwd: './dist/front-saps/',
                         src: ['**'],
                         dest: ''
                     }

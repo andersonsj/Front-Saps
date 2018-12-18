@@ -2,6 +2,7 @@
     background: white;
     box-shadow: 5px 2px 14px #888888;
     height: 52px;
+    z-index: 2;
 }
 
 .header a {

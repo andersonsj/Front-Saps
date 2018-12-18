@@ -11,6 +11,7 @@ import { HomeModule } from './component/home/home.module';
 import { Routing } from './app-routing';
 import { Configuration } from './util/endpoint/configuration';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SideMenuModule } from './shared/layout/side-menu/side-menu.module';
 
 @NgModule({
   declarations: [

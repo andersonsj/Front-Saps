@@ -5,6 +5,7 @@ import { EmptyLayoutComponent } from './app-layouts/empty-layout/empty-layout.co
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { ProductoModule } from 'src/app/component/producto/producto.module';
+import { SideMenuModule } from './side-menu/side-menu.module';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,13 @@ import { ProductoModule } from 'src/app/component/producto/producto.module';
     CommonModule,
     HeaderModule,
     FooterModule,
-    ProductoModule
+    ProductoModule,
+    SideMenuModule
   ],
   exports: [
     HeaderModule,
-    FooterModule
+    FooterModule,
+    SideMenuModule
   ]
 
 })

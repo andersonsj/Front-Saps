@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { CollapseMenuComponent } from './collapse-menu/collapse-menu.component';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { CollapseMenuComponent } from './collapse-menu/collapse-menu.component';
     CollapseMenuComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FooterModule
   ],
   exports: [
     HeaderComponent

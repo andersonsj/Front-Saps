@@ -5,5 +5,5 @@ export class Producto {
     nombre: string;
     cantidad: number;
     precioUnidad: number;
-    precioTotal: number
+    precioTotal: number;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Total } from '../models/total-model';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { Data } from '../models/data-model';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Data } from '../models/data-model';
 export class DataService {
 
   data: Data;
+  total: Total;
 
   private valor: string;
 

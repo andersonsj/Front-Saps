@@ -1,0 +1,57 @@
+.SideMenu {
+    height: 100%;
+    position: fixed;
+    top: 52px;
+    right: 0;
+    background-color: #f8f8f8;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 0px;
+    width: 294px;
+}
+
+.SideMenu hr {
+    color: #0071b9;
+    width: 254px;
+    height: 0;
+}
+
+.titulo {
+    color: #0071b9;
+    font-size: 16.1px;
+    font-weight: bold;
+    padding-top: 8px;
+    text-align: center;
+}
+
+.subtitulo {
+    color: #2e3239;
+    font-size: 14px;
+}
+
+.DivCaja {
+    left: 18px;
+    position: relative;
+}
+
+
+.CajaCaptura {
+    width: 230.5px;
+    height: 30px;
+    background-color: #ffffff;
+}
+
+
+.DivBoton{
+position: relative;
+left: 40px;
+}
+
+.BotonContinuar {
+    width: 187px;
+    height: 37px;
+    background-color: #0071b9;
+    font-size: 14px;
+    color: #ffffff;
+    border: aliceblue;
+}

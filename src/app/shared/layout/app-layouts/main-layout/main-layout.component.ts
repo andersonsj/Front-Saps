@@ -10,6 +10,7 @@ export class MainLayoutComponent implements OnInit {
   constructor() { }
 
   public totalpagoMain = 80000;
+  public totalMain = 0;
 
   ngOnInit() {
   }
@@ -17,7 +18,9 @@ export class MainLayoutComponent implements OnInit {
   pasarDato(variable): void {
     console.log('Imprimo la variable');
     console.log(variable);
+    this.totalMain = variable;
     console.log('se lanzo en main');
+    console.log(this.totalMain);
   }
 
 }

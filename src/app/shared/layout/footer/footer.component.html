@@ -5,7 +5,7 @@
       <br>
       <br>
       <div class="row">
-        <div class="col-md-3"><button class="boton" type="button" data-toggle="modal" data-target="#crearModal">Eliminar
+        <div class="col-md-3"><button class="boton" type="button" data-toggle="modal" data-target="#crearModalEliminar">Eliminar
             pedido</button>
         </div>
         <div class="col-md-3"><button class="boton">Guardar y finalizar</button></div>
@@ -19,7 +19,7 @@
           </div>
 
           <div>
-            <div><label class="total">{{valor | currency}}</label></div>
+            <div><label class="total">{{otro | currency}}</label></div>
             <div><a class="fleteValor">Sin calcular</a></div>
             <div><a class="precioValor">{{precioPago | currency}}</a></div>
           </div>
@@ -30,27 +30,23 @@
 
 </footer>
 
-<!-- The Modal -->
-<div class="modal" id="crearModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+<div class="EliminarModal">
+  <div class="modal" id="crearModalEliminar">
+    <div class="modal-dialog " role=" document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <img src="assets/img/Modal/Eliminar.png"> 
+        </div>
+        
+        <div class="modal-body ">
+        Esta operación eliminara todos los pedidos de la lista.
       </div>
-
-      <!-- Modal Body -->
-      <div class="modal-body">
-        Modal Body ...
+      <div class="modal-footer">
+        <button type="button" class="btnCancelar" data-dismiss="modal" >Cancelar</button>
+        <button type="button" class="btnAceptar" id="limpiar" (click)="refresh()">Aceptar</button>
       </div>
-
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
     </div>
   </div>
+</div>
 </div>

@@ -8,7 +8,9 @@ import { DataService } from 'src/app/core/services/data.service';
 })
 export class FooterComponent implements OnChanges, OnInit {
 
-  @Input() otro;
+  @Input() valorTotal;
+  @Input() valorFlete;
+  @Input() precioPagar;
 
   constructor(private data: DataService) {
 
@@ -23,7 +25,7 @@ export class FooterComponent implements OnChanges, OnInit {
     this.total = localStorage.getItem('precioTotal');
     this.precioPago = localStorage.getItem('precioPago');
     this.precioFlete = localStorage.getItem('precioFlete');
-    console.log(this.otro);
+    console.log(this.valorTotal);
   }
 
   ngOnChanges(changes: SimpleChanges) {

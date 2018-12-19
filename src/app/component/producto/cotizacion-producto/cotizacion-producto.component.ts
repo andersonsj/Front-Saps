@@ -30,7 +30,7 @@ export class CotizacionProductoComponent implements OnInit {
   private datos: any;
   private precioTotal = 0;
   private cantidadProducto: any;
-  private numero = [];
+  numero = [];
   private producto: Array<any>;
   private habilita: boolean = false;
   private sw: boolean;

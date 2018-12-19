@@ -13,7 +13,7 @@
 
 .navegador {
     display: inline-block;
-   /*  padding-top: .3125rem;
+    /*  padding-top: .3125rem;
     padding-bottom: .3125rem; */
     margin-right: 1rem;
     font-size: 1.25rem;
@@ -27,8 +27,14 @@
     font-weight: bold;
 }
 
-.logoconstructor {}
+.logoconstructor {
+    position: fixed;
+    left: 88%;
+    top: 0px;
+}
 
 .logohomecenter {
-    padding-top: 14px;
+    position: fixed;
+    top: 11px;
+    left: 77%;
 }

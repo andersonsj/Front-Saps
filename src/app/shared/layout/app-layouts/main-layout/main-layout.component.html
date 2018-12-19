@@ -1,9 +1,9 @@
 <div class="container-fluid" id="main" role="main">
     <div class="row">
         <div class="col-md-12">
-            <app-cotizacion-producto [valor]="totalpagoMain" (totalpagoCotiza)="pasarDato($event)"></app-cotizacion-producto>
+            <app-cotizacion-producto [valor]="totalpagoMain" (valorTotalCot)="pasarTotal($event)" (precioPagarCot)="pasarPrecioPagar($event)"></app-cotizacion-producto>
         </div>
     </div>
 
 </div>
-<app-footer [otro]="totalpagoMain"></app-footer>
+<app-footer [valorTotal]="totalMain" [precioPagar]="precioPagarMain"></app-footer>

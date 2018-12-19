@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class CollapseMenuComponent implements OnInit {
 
   private estadoNav = 0;
-  private Home: string;
-  private consultaCliente: string;
+  Home: string;
+  consultaCliente: string;
 
   constructor() { }
 

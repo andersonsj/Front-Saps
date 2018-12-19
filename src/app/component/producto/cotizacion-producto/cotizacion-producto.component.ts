@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Producto } from 'src/app/core/model/producto';
+import { FichaTecnica } from 'src/app/core/model/fichaTecnicaProducto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/core/services/data.service';
 import { ProductoService } from '../producto.service';
@@ -25,6 +26,11 @@ export class CotizacionProductoComponent implements OnInit {
     precioTotal: null,
     fichaTecnica: null
   };
+  public infoFicha: FichaTecnica = {
+    atributo: null,
+    detalle: null
+  };
+
   productoForm: FormGroup;
   public buscarSku: string;
   private datos: any;
@@ -34,6 +40,9 @@ export class CotizacionProductoComponent implements OnInit {
   private producto: Array<any>;
   private habilita: boolean = false;
   private sw: boolean;
+  private productoElegido: any;
+  private nombreProducto: any;
+  private skuProducto: any;
 
 
 
@@ -191,7 +200,21 @@ export class CotizacionProductoComponent implements OnInit {
     }
   }
 
-  eliminarProducto(numProd: any){
+  verDetalleModal(numProd: any){
+    this.productoElegido = numProd;
+    this.fichaTecnicaProducto = this.numero[numProd].ficha;
+    /*this.verDetalle(this.fichaTecnicaProducto);*/
+  }
+
+  eliminarProductoModal(numProd: any){
+    this.productoElegido = numProd;
+    this.nombreProducto = this.numero[numProd].nombre;
+    this.skuProducto = this.numero[numProd].sku;
+  }
+
+  
+
+  eliminarProducto(){
     let i: any;
     let j: any;
     j=0;
@@ -199,7 +222,7 @@ export class CotizacionProductoComponent implements OnInit {
     console.log("length inicial"+this.numero.length);
     for(i = 0 ; i < this.numero.length;i++){
       console.log("i: "+i);
-      if(i != numProd){
+      if(i != this.productoElegido){
         productosTemp[j] = this.numero[i];
         j = j + 1;
       }   

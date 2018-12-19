@@ -58,7 +58,7 @@
           <div class="containerImagenes">
             <div class="iconos_productos" (click)="verDetalle(cont)"><img class="imagen" src="assets/img/Iconos_productos/Ico_detalle.png"></div>
             <div class="iconos_productos" ><img class="imagen" src="assets/img/Iconos_productos/ico_unidades.png"></div>
-            <div class="iconos_productos" (click)="eliminarProducto(cont)"><img class="imagen" src="assets/img/Iconos_productos/Ico_eliminar.png"></div>
+            <div class="iconos_productos" (click)="eliminarProductoModal(cont)" data-toggle="modal" data-target="#EliminarProductoModal"><img class="imagen" src="assets/img/Iconos_productos/Ico_eliminar.png"></div>
           </div>
         </td>
     </tr>
@@ -99,4 +99,28 @@
     </tfoot>
   </table>
   </div>
+</div>
+
+<div class="productoModal3">
+  <div class="modal" id="EliminarProductoModal">
+    <div class="modal-dialog " role=" document">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <img src="assets/img/Modal/Eliminar.png"> 
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        
+        <div class="modal-body ">
+          Se eliminará el producto.
+          {{nombreProducto}}
+          sku {{skuProducto}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnCancelar" data-dismiss="modal" >Cancelar</button>
+          <button type="button" class="btnAceptar" id="limpiar" data-dismiss="modal" (click)="eliminarProducto()">Aceptar</button>
+        </div>
+    </div>
+  </div>
+</div>
 </div>

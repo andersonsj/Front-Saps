@@ -31,13 +31,13 @@
 }
 
 .logoconstructor {
-    position: fixed;
-    left: 88%;
+    position: relative;
+    left: 75%;
     top: 0px;
 }
 
 .logohomecenter {
-    position: fixed;
+    position: relative;
     top: 11px;
-    left: 77%;
+    left: 76%;
 }

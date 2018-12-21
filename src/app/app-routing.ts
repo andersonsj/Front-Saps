@@ -5,15 +5,10 @@ import { ModuleWithProviders } from '@angular/core';
 export const routes: Routes = [
 
     {
-        path: '',
+        path: 'Saps',
         component: MainLayoutComponent,
         data: { pageTitle: 'Saps - Homecenter' },
         children: [
-            {
-                path: '',
-                redirectTo: 'home',
-                pathMatch: 'full'
-            },
             {
                 path: 'cliente',
                 loadChildren: './component/cliente/cliente.module#ClienteModule'

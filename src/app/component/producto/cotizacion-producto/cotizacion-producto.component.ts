@@ -50,6 +50,7 @@ export class CotizacionProductoComponent implements OnInit {
   private producto: Array<any>;
   private habilita = false;
   private sw: boolean;
+<<<<<<< HEAD
   private productoElegido: any;
   private nombreProducto: any;
   private skuProducto: any;
@@ -64,6 +65,11 @@ export class CotizacionProductoComponent implements OnInit {
   private fichaTecnicaProd: string;
   private parametrosFicha = [];
   vectorAtributosProducto = [];
+=======
+  private fichaTecnicaProducto: string;
+  private atributosFicha = [];
+  private atributosFicha3 = [];
+>>>>>>> 3a3ce9f41331fc909020d5ba05f5c4d2424b732e
 
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) {
     this.data.guardarLocal('precioTotal', '0');

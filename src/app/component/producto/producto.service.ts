@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from 'src/app/util/endpoint/configuration';
+import { ConsultaInventario } from 'src/app/core/models/consultaInventario';
 
 
 @Injectable({
@@ -17,4 +18,8 @@ export class ProductoService {
     console.log('info producto: ' + producto);
     return this.http.get(this.configuration.consutarCatalogoApiUrl + producto + complemento);
   }
+
+  postConsultarInventario(consulta: ConsultaInventario): Observable<ConsultaInventario> {
+    return this.http.post<ConsultaInventario>(this.configuration.consultaInventarioUrl, consulta, { headers: this.httpHeaders });
+  } 
 }

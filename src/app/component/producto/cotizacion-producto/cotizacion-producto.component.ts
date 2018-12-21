@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Producto } from 'src/app/core/model/producto';
-import { FichaTecnica } from 'src/app/core/model/fichaTecnicaProducto';
+import { Producto } from 'src/app/core/models/producto';
+import { FichaTecnica } from 'src/app/core/models/fichaTecnicaProducto';
+import { ConsultaInventario } from 'src/app/core/models/consultaInventario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/core/services/data.service';
 import { ProductoService } from '../producto.service';
@@ -24,11 +25,19 @@ export class CotizacionProductoComponent implements OnInit {
     cantidad: null,
     precioUnidad: null,
     precioTotal: null,
-    fichaTecnica: null
+    fichaTecnica: null,
+    prd_lvl_child: null
   };
   public infoFicha: FichaTecnica = {
     atributo: null,
     detalle: null
+  };
+  private inventario: ConsultaInventario = {
+    nombre: null,
+    parametros: {
+      "idCiudad": null,
+      "prdChild": 0
+    }
   };
 
   productoForm: FormGroup;
@@ -36,19 +45,25 @@ export class CotizacionProductoComponent implements OnInit {
   private datos: any;
   private precioTotal = 0;
   private cantidadProducto: any;
-  private numero = [];
+  numero = [];
+  inventarioTiendas = [];
   private producto: Array<any>;
-  private habilita: boolean = false;
+  private habilita = false;
   private sw: boolean;
   private productoElegido: any;
   private nombreProducto: any;
   private skuProducto: any;
+  private respuesta: any;
+  nombreAlmacen: any;
+  cantidad: any;
+  private prdChild: any;	
 
 
 
-  private fichaTecnicaProducto: string;
-  private atributosFicha = [];
-  private atributosFicha3 = [];
+
+  private fichaTecnicaProd: string;
+  private parametrosFicha = [];
+  vectorAtributosProducto = [];
 
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, private data: DataService) {
     this.data.guardarLocal('precioTotal', '0');
@@ -60,10 +75,6 @@ export class CotizacionProductoComponent implements OnInit {
   ngOnInit() {
     console.log(this.valor);
 
-  }
-
-  holaMundo(){
-    console.log("Hola Hola Hola");
   }
 
   restarCantidad(cont: number) {
@@ -90,159 +101,228 @@ export class CotizacionProductoComponent implements OnInit {
         cantidad: null,
         precioUnidad: null,
         precioTotal: null,
-        fichaTecnica: null
-      }; 
+        fichaTecnica: null,
+        prd_lvl_child: null
+      };
     }
   }
 
-  sumarCantidad(cont: number) {  
-    console.log("cont sumar: "+cont);
+  sumarCantidad(cont: number) {
     this.infoProducto = this.numero[cont];
     this.cantidadProducto = this.infoProducto.cantidad;
     this.cantidadProducto = this.cantidadProducto + 1;
     this.infoProducto.cantidad = this.cantidadProducto;
     this.infoProducto.precioTotal = this.infoProducto.precioUnidad * this.infoProducto.cantidad;
-      console.log(this.infoProducto);
-      this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
-      this.numero[cont] =  this.infoProducto;
-      this.precioTotal = 0;
-      console.log("Este es el precio total previo: "+this.precioTotal);
-      for (let j = 0; j < this.numero.length; j++) {
-        this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
-        console.log('entre');
-      }
-      console.log("Este es el precio total despues: "+this.precioTotal);
-      this.valorTotalCot.emit(this.precioTotal);
-      this.precioPagarCot.emit(this.precioTotal);
-      this.infoProducto={
-        sku: null,
-        nombre: null,
-        cantidad: null,
-        precioUnidad: null,
-        precioTotal: null,
-        fichaTecnica: null
-      };
-  }
-
-  listaProductos() {
-    console.log("length1");
-    console.log(this.numero.length);
-    console.log(this.infoProducto)
-
-    let i: any;
-    i = this.numero.length;
-    console.log("valor i" + i);
-    if (i > 0){
-      console.log(this.numero[i-1]);
-    }
-    this.numero[i] = this.infoProducto;
-
-    console.log(this.numero);
+    console.log(this.infoProducto);
+    this.data.guardarLocal('precioTotal', 'this.infoProducto.precioTotal');
+    this.numero[cont] = this.infoProducto;
     this.precioTotal = 0;
-    console.log("Este es el precio total previo: "+this.precioTotal);
     for (let j = 0; j < this.numero.length; j++) {
       this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
       console.log('entre');
     }
-    console.log('el precio est aqui');
-    console.log(this.precioTotal);
     this.valorTotalCot.emit(this.precioTotal);
     this.precioPagarCot.emit(this.precioTotal);
-    
-    console.log("length2");
-    console.log(this.numero.length);
-
-    this.infoProducto={
+    this.infoProducto = {
       sku: null,
       nombre: null,
       cantidad: null,
       precioUnidad: null,
       precioTotal: null,
-      fichaTecnica: null
+      fichaTecnica: null,
+      prd_lvl_child: null
     };
-    
+  }
+
+  listaProductos() {
+
+    let i: any;
+    i = this.numero.length;
+    if (i > 0) {
+      console.log(this.numero[i - 1]);
+    }
+    this.numero[i] = this.infoProducto;
+
+    this.precioTotal = 0;
+    for (let j = 0; j < this.numero.length; j++) {
+      this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
+    }
+
+    this.valorTotalCot.emit(this.precioTotal);
+    this.precioPagarCot.emit(this.precioTotal);
+
+    this.infoProducto = {
+      sku: null,
+      nombre: null,
+      cantidad: null,
+      precioUnidad: null,
+      precioTotal: null,
+      fichaTecnica: null,
+      prd_lvl_child: null
+    };
+
     this.habilita = true;
     console.log(this.habilita);
-  
-    (<HTMLInputElement>document.getElementById("txtBuscarSku")).value = '';
+
+    (<HTMLInputElement>document.getElementById('txtBuscarSku')).value = '';
   }
 
   buscarProducto(buscarSku: any) {
-    console.log("lololololo");
-    if(buscarSku == '' || isNaN(Number(buscarSku))){
-      alert("El SKU debe ser númerico");
-      (<HTMLInputElement>document.getElementById("txtBuscarSku")).value = '';
-    }
-    else{
+
+    if (buscarSku === '' || isNaN(Number(buscarSku))) {
+      alert('El SKU debe ser númerico');
+      (<HTMLInputElement>document.getElementById('txtBuscarSku')).value = '';
+    } else {
       this.sw = false;
       this.productoService.getBuscarProductos(buscarSku).subscribe(
         (data) => {
           this.datos = data.value;
-          console.log("length data.value");
-          console.log(data.value);
-          
-          if (data.value.length == 1){
+          if (data.value.length === 1) {
             this.sw = true;
             this.infoProducto.sku = this.datos[0].sku;
-            console.log("sku datos-infoproducto");
-            console.log(this.infoProducto.sku);
             this.infoProducto.nombre = this.datos[0].nombre;
             this.infoProducto.precioUnidad = this.datos[0].precio;
             this.infoProducto.cantidad = 1;
             this.infoProducto.precioTotal = this.datos[0].precio;
             this.infoProducto.fichaTecnica = this.datos[0].ficha;
-            if(this.sw = true){
+            if (this.sw = true) {
               this.listaProductos();
             }
           }
         }
       );
     }
+
   }
 
-  verDetalleModal(numProd: any){
+  verDetalleModal(numProd: any) {
+    console.log(this.numero);
+    console.log("num Prod: " + numProd);
     this.productoElegido = numProd;
-    this.fichaTecnicaProducto = this.numero[numProd].ficha;
-    /*this.verDetalle(this.fichaTecnicaProducto);*/
+    console.log("ficha1: " + this.numero[numProd].fichaTecnica);
+    this.fichaTecnicaProd = this.numero[numProd].fichaTecnica;
+    this.verDetalle(this.fichaTecnicaProd);
+
+    this.nombreProducto = this.numero[numProd].nombre;
+    this.skuProducto = this.numero[numProd].sku;
   }
 
-  eliminarProductoModal(numProd: any){
+  inventarioProductoModal(numProd: any) {
+    let idCiudad: string = '1';
+    let idAlmacen: string = '68';
+    let prdChild: number = 223037;
+    let consulta: string = 'consultar.inventario.tiendas.por.sku';
+
+    this.productoForm = this.formBuilder.group({
+      consulta: [consulta, Validators.required],
+      idCiudad: [idCiudad, Validators.required],
+      idAlmacen: [idAlmacen, Validators.required],
+      prdChild: [prdChild, Validators.required],
+
+    });
+
+    this.nombreProducto = this.numero[numProd].nombre;
+    this.prdChild = this.numero[numProd].prp_lvl_child;
+
+    this.inventario.nombre = consulta;
+    this.inventario.parametros.idCiudad = idCiudad;
+    this.inventario.parametros.prdChild = this.prdChild;
+
+    console.log(this.inventario);
+
+
+    this.productoService.postConsultarInventario(this.inventario)
+    .subscribe(
+      (data) => { 
+        this.respuesta = data;
+        this.inventarioTiendas = this.respuesta.objectoRespuesta;
+
+        for (let j = 0; j < this.inventarioTiendas.length; j++){
+          if (this.inventarioTiendas[j].idAlmacen = idAlmacen){
+            this.nombreAlmacen = this.inventarioTiendas[j].nombre;
+            this.cantidad	= this.inventarioTiendas[j].cantidad;
+          }
+        }
+      }
+      );
+  }
+
+  eliminarProductoModal(numProd: any) {
     this.productoElegido = numProd;
     this.nombreProducto = this.numero[numProd].nombre;
     this.skuProducto = this.numero[numProd].sku;
   }
 
-  
+  verDetalle(ficha: any) {
+    console.log("Detalles ficha");
+    let cadena1: string;
+    let separador = '",';
+    let separador2 = '=';
+    let patron1 = '="';
+    let nuevoValor1 = ',';
+    let atributosFicha = [];
 
-  eliminarProducto(){
+    this.parametrosFicha = this.fichaTecnicaProd.split(separador);
+
+    console.log(this.parametrosFicha);
+    let i: any;
+    let j: any = 0;
+    let carAnterior = '"';
+    let carNuevo = '';
+    for (i = 0; i < this.parametrosFicha.length; i++) {
+      console.log("i: " + i);
+
+      atributosFicha = this.parametrosFicha[i].split(separador2);
+
+      this.infoFicha.atributo = atributosFicha[0];
+      atributosFicha[1] = atributosFicha[1].replace(carAnterior, carNuevo);
+      this.infoFicha.detalle = atributosFicha[1];
+
+      console.log(this.infoFicha);
+
+      this.vectorAtributosProducto[i] = this.infoFicha;
+      /*let j : any;
+      j = this.numero.length;
+      if (j > 0) {
+        console.log(this.numero[i - 1]);
+      }
+      this.numero[j] = this.infoProducto;*/
+
+      this.infoFicha = {
+        atributo: null,
+        detalle: null
+      };
+    }
+
+    console.log("vector atributos producto: ");
+    console.log(this.vectorAtributosProducto);
+    /*console.log("ficha técnica de producto: "+ this.fichaTecnicaProducto);
+    cadena1 = this.fichaTecnicaProducto.replace(patron1, nuevoValor1);*/
+  }
+
+  eliminarProducto() {
     let i: any;
     let j: any;
-    j=0;
+    j = 0;
     let productosTemp: any = [];
-    console.log("length inicial"+this.numero.length);
-    for(i = 0 ; i < this.numero.length;i++){
-      console.log("i: "+i);
-      if(i != this.productoElegido){
+    console.log("length inicial" + this.numero.length);
+    for (i = 0; i < this.numero.length; i++) {
+      console.log("i: " + i);
+      if (i != this.productoElegido) {
         productosTemp[j] = this.numero[i];
         j = j + 1;
-      }   
+      }
     }
     this.numero = productosTemp;
     this.precioTotal = 0;
-    for (let j = 0; j < this.numero.length; j++) {
+    for (j = 0; j < this.numero.length; j++) {
       this.precioTotal = this.numero[j].precioTotal + this.precioTotal;
-      console.log('entre');
     }
     this.valorTotalCot.emit(this.precioTotal);
     this.precioPagarCot.emit(this.precioTotal);
-    console.log("length final"+this.numero.length);
-    console.log(this.numero);
   }
 
-  
   lanzar() {
-    // Usamos el método emit
     this.valorTotalCot.emit('2000000');
-    console.log('se lan zo');
   }
 }

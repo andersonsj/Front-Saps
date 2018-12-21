@@ -1,4 +1,3 @@
-
 export class Producto {
 
     sku: string;
@@ -6,5 +5,6 @@ export class Producto {
     cantidad: number;
     precioUnidad: number;
     precioTotal: number;
-    fichaTecnica: string
+    fichaTecnica: string;
+    prd_lvl_child: number;
 }

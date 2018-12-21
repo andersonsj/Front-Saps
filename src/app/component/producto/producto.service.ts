@@ -10,11 +10,11 @@ import { ConsultaInventario } from 'src/app/core/models/consultaInventario';
 })
 export class ProductoService {
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-
+  inventarioProductos = []
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
   getBuscarProductos(producto: any): Observable<any> {
-    const complemento = '&$filter=idZona%20eq%2041&$top=1&$skip=0&$count=true&$select=sku,nombre,precio,ficha,cmr,garantia,cmrfrom';
+    const complemento = '&$filter=idZona%20eq%2041&$top=1&$skip=0&$count=true&$select=sku,nombre,precio,ficha,cmr,garantia,cmrfrom,prd_lvl_child';
     console.log('info producto: ' + producto);
     return this.http.get(this.configuration.consutarCatalogoApiUrl + producto + complemento);
   }

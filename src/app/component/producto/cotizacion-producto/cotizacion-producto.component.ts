@@ -26,7 +26,7 @@ export class CotizacionProductoComponent implements OnInit {
     precioUnidad: null,
     precioTotal: null,
     fichaTecnica: null,
-    prd_lvl_child: null
+    prdLvlChild: null
   };
   public infoFicha: FichaTecnica = {
     atributo: null,
@@ -56,7 +56,7 @@ export class CotizacionProductoComponent implements OnInit {
   private respuesta: any;
   nombreAlmacen: any;
   cantidad: any;
-  private prdChild: any;	
+  private prdChild: number;	
 
 
 
@@ -102,7 +102,7 @@ export class CotizacionProductoComponent implements OnInit {
         precioUnidad: null,
         precioTotal: null,
         fichaTecnica: null,
-        prd_lvl_child: null
+        prdLvlChild: null
       };
     }
   }
@@ -130,7 +130,7 @@ export class CotizacionProductoComponent implements OnInit {
       precioUnidad: null,
       precioTotal: null,
       fichaTecnica: null,
-      prd_lvl_child: null
+      prdLvlChild: null
     };
   }
 
@@ -158,7 +158,7 @@ export class CotizacionProductoComponent implements OnInit {
       precioUnidad: null,
       precioTotal: null,
       fichaTecnica: null,
-      prd_lvl_child: null
+      prdLvlChild: null
     };
 
     this.habilita = true;
@@ -185,6 +185,7 @@ export class CotizacionProductoComponent implements OnInit {
             this.infoProducto.cantidad = 1;
             this.infoProducto.precioTotal = this.datos[0].precio;
             this.infoProducto.fichaTecnica = this.datos[0].ficha;
+            this.infoProducto.prdLvlChild = this.datos[0].prd_lvl_child;
             if (this.sw = true) {
               this.listaProductos();
             }
@@ -208,21 +209,19 @@ export class CotizacionProductoComponent implements OnInit {
   }
 
   inventarioProductoModal(numProd: any) {
+
+    this.nombreAlmacen = null;
+    this.cantidad = null;
     let idCiudad: string = '1';
-    let idAlmacen: string = '68';
-    let prdChild: number = 223037;
+    let identificadorAlmacen: string = '68';
+    //let prdChild: number = 223037;
     let consulta: string = 'consultar.inventario.tiendas.por.sku';
-
-    this.productoForm = this.formBuilder.group({
-      consulta: [consulta, Validators.required],
-      idCiudad: [idCiudad, Validators.required],
-      idAlmacen: [idAlmacen, Validators.required],
-      prdChild: [prdChild, Validators.required],
-
-    });
-
+    this.inventarioTiendas = null;
+   
     this.nombreProducto = this.numero[numProd].nombre;
-    this.prdChild = this.numero[numProd].prp_lvl_child;
+    this.prdChild = this.numero[numProd].prdLvlChild;
+    console.log("prd child "+this.numero[numProd].prdLvlChild);
+    console.log(this.prdChild );
 
     this.inventario.nombre = consulta;
     this.inventario.parametros.idCiudad = idCiudad;
@@ -230,21 +229,24 @@ export class CotizacionProductoComponent implements OnInit {
 
     console.log(this.inventario);
 
-
+    
     this.productoService.postConsultarInventario(this.inventario)
     .subscribe(
-      (data) => { 
+      data => { 
         this.respuesta = data;
         this.inventarioTiendas = this.respuesta.objectoRespuesta;
-
-        for (let j = 0; j < this.inventarioTiendas.length; j++){
-          if (this.inventarioTiendas[j].idAlmacen = idAlmacen){
-            this.nombreAlmacen = this.inventarioTiendas[j].nombre;
-            this.cantidad	= this.inventarioTiendas[j].cantidad;
+        console.log(this.respuesta.objectoRespuesta);
+        for (let j = 0; j < this.respuesta.objectoRespuesta.length; j++){
+          if (this.inventarioTiendas[j].idAlmacen === identificadorAlmacen){
+            console.log(this.respuesta.objectoRespuesta[j].idAlmacen);
+            console.log(this.respuesta.objectoRespuesta[j].nombre);
+            this.nombreAlmacen = this.respuesta.objectoRespuesta[j].nombre;
+            this.cantidad	= this.respuesta.objectoRespuesta[j].cantidad;
           }
         }
       }
       );
+
   }
 
   eliminarProductoModal(numProd: any) {
@@ -258,8 +260,6 @@ export class CotizacionProductoComponent implements OnInit {
     let cadena1: string;
     let separador = '",';
     let separador2 = '=';
-    let patron1 = '="';
-    let nuevoValor1 = ',';
     let atributosFicha = [];
 
     this.parametrosFicha = this.fichaTecnicaProd.split(separador);
@@ -296,8 +296,6 @@ export class CotizacionProductoComponent implements OnInit {
 
     console.log("vector atributos producto: ");
     console.log(this.vectorAtributosProducto);
-    /*console.log("ficha técnica de producto: "+ this.fichaTecnicaProducto);
-    cadena1 = this.fichaTecnicaProducto.replace(patron1, nuevoValor1);*/
   }
 
   eliminarProducto() {

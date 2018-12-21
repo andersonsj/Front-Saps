@@ -16,8 +16,8 @@ import { SideMenuModule } from './side-menu/side-menu.module';
     CommonModule,
     HeaderModule,
     FooterModule,
-    ProductoModule,
-    SideMenuModule
+    SideMenuModule,
+    ProductoModule
   ],
   exports: [
     HeaderModule,

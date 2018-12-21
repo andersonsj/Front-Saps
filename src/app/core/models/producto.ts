@@ -6,5 +6,5 @@ export class Producto {
     precioUnidad: number;
     precioTotal: number;
     fichaTecnica: string;
-    prd_lvl_child: number;
+    prdLvlChild: any;
 }

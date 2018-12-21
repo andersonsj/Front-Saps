@@ -1,21 +1,23 @@
-<div class="SideMenu">
+<div id="mySidebar" class="sidebar">
     <div class="container">
         <div class="titulo">
             Verificación de datos
             <hr>
         </div>
-        <div class="DivCaja">
-            <span class="subtitulo">Identificación asesor</span>
-            <input type="text" class="CajaCaptura">
-        </div>
-        <div class="DivCaja">
-            <span class="subtitulo">Contraseña</span>
-            <input type="password" class="CajaCaptura">
-        </div>
-        <div class="DivBoton">
-            <br>
-            <br>
-            <button class="BotonContinuar">Continuar</button>
-        </div>
+        <form [formGroup]="addForm" (ngSubmit)="login()">
+            <div class="DivCaja">
+                <span class="subtitulo" for="login">Identificación asesor</span>
+                <input formControlName="login" type="text" class="CajaCaptura" name="login" id="login" required>
+            </div>
+            <div class="DivCaja">
+                <span class="subtitulo" for="clave">Contraseña</span>
+                <input formControlName="clave" type="password" class="CajaCaptura" name="clave" id="clave" required>
+            </div>
+            <div class="DivBoton">
+                <br>
+                <br>
+                <button class="BotonContinuar">Continuar</button>
+            </div>
+        </form>
     </div>
 </div>

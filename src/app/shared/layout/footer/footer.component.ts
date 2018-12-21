@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
+import { SideMenuComponent } from '../side-menu/side-menu.component';
+
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +13,9 @@ export class FooterComponent implements OnChanges, OnInit {
   @Input() valorTotal;
   @Input() valorFlete;
   @Input() precioPagar;
+
+
+  @ViewChild(SideMenuComponent) panel: SideMenuComponent;
 
   constructor(private data: DataService) {
 
@@ -32,6 +37,13 @@ export class FooterComponent implements OnChanges, OnInit {
     /*   const valor: SimpleChange = changes.valor;
       console.log('prev value: ', valor.previousValue);
       console.log('got name: ', valor.currentValue); */
+  }
+
+  manejoPanel() {
+    console.log('ingreso open manejo panel');
+
+    this.panel.openNav();
+
   }
 
 }

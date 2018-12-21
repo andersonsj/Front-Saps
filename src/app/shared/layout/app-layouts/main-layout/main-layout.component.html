@@ -1,9 +1,21 @@
+<header>
+    <app-header></app-header>
+</header>
+
+<body>
+    <div class="container-12">
+        <app-cotizacion-producto [valor]="totalpagoMain" (valorTotalCot)="pasarTotal($event)" (precioPagarCot)="pasarPrecioPagar($event)"></app-cotizacion-producto>
+    </div>
+    
+</body>
+
+<footer>
+    <app-footer [valorTotal]="totalMain" [precioPagar]="precioPagarMain"></app-footer>
+</footer>
+
 <div class="container-fluid" id="main" role="main">
     <div class="row">
         <div class="col-md-12">
-            <app-cotizacion-producto [valor]="totalpagoMain" (valorTotalCot)="pasarTotal($event)" (precioPagarCot)="pasarPrecioPagar($event)"></app-cotizacion-producto>
         </div>
     </div>
-
 </div>
-<app-footer [valorTotal]="totalMain" [precioPagar]="precioPagarMain"></app-footer>

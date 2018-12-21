@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  private nombreAsesor: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.nombreAsesor = 'Anderson Jimenez';
   }
+
+
+
 
 }

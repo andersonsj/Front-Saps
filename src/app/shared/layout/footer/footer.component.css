@@ -32,16 +32,38 @@
 }
 
 .total {
-    top: -25px
+    top: -25px;
+}
+
+.divTotal {
+    left: 54%;
+    top: -25px;
 }
 
 .flete {
     top: -4px;
 }
 
+.divFlete {
+    left: 54%;
+    font-size: 11px;
+    top: -2px;
+    color: #c8c9ca;
+    position: absolute;
+}
+
 .precio {
     top: 30px;
     font-weight: bold;
+}
+
+.divPrecio {
+    left: 54%;
+    font-size: 22px;
+    color: #c8c9ca;
+    font-weight: bold;
+    top: 26px;
+    position: absolute;
 }
 
 .fleteValor {
@@ -70,8 +92,6 @@
 .EliminarModal {
     text-align: center;
     vertical-align: middle;
-  
-    
 }
 
 .EliminarModal img {
@@ -86,7 +106,6 @@
 }
 
 .modal-footer {
- 
     border-top: 0px;
 }
 
@@ -143,4 +162,16 @@
     line-height: 18px;
     margin-right: 60px;
     margin-left: 0px;
+}
+
+.divCentral {
+    right: 5%;
+}
+
+.divDerecha {
+    right: 10%;
+}
+
+.contenedorPrecio{
+    right: 128px;
 }

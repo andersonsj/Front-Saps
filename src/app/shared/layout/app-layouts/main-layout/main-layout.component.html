@@ -1,5 +1,5 @@
 <header>
-    <app-header></app-header>
+    <app-header [nombreAsesor]="nombreAsesorMain"></app-header>
 </header>
 
 <body>
@@ -10,7 +10,7 @@
 </body>
 
 <footer>
-    <app-footer [valorTotal]="totalMain" [precioPagar]="precioPagarMain"></app-footer>
+    <app-footer [valorTotal]="totalMain" [precioPagar]="precioPagarMain" (nombreAsesorFooter)="pasarNombreFooter($event)"></app-footer>
 </footer>
 
 <div class="container-fluid" id="main" role="main">

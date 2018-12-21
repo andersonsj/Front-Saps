@@ -13,6 +13,8 @@ export class MainLayoutComponent implements OnInit {
   public totalpagoMain = 80000;
   public totalMain = 0;
   public precioPagarMain = 0;
+  public nombreAsesor: string;
+  public nombreAsesorMain: string;
 
   ngOnInit() {
     this.obtenerDatosAlmacen();
@@ -27,6 +29,11 @@ export class MainLayoutComponent implements OnInit {
     this.precioPagarMain = dato;
   }
 
+  pasarNombreFooter(nombreAsesor): void {
+    this.nombreAsesor = nombreAsesor;
+    console.log('Ya estoy en main' + this.nombreAsesor);
+    this.nombreAsesorMain = nombreAsesor;
+  }
 
   obtenerDatosAlmacen() {
     this.serviceData.getDatosAlmacen().subscribe(datosAlmacen => {

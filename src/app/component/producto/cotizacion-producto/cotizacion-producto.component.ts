@@ -34,9 +34,6 @@ export class CotizacionProductoComponent implements OnInit {
   private producto: Array<any>;
   private habilita = false;
   private sw: boolean;
-
-
-
   private fichaTecnicaProducto: string;
   private atributosFicha = [];
   private atributosFicha3 = [];

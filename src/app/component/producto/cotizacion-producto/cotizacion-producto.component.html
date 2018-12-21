@@ -66,9 +66,9 @@
               </td>
               <td>
                 <div class="containerImagenes">
-                  <div class="iconos_productos" (click)="verDetalle(cont)"><img class="imagen" src="assets/img/Iconos_productos/Ico_detalle.png"></div>
-                  <div class="iconos_productos"><img class="imagen" src="assets/img/Iconos_productos/ico_unidades.png"></div>
-                  <div class="iconos_productos" (click)="eliminarProducto(cont)"><img class="imagen" src="assets/img/Iconos_productos/Ico_eliminar.png"></div>
+                  <div class="iconos_productos" (click)="verDetalleModal(cont)" data-toggle='modal' data-target="#verDetalleProductoModal"><img class="imagen" src="assets/img/Iconos_productos/Ico_detalle.png"></div>
+                  <div class="iconos_productos" (click)="inventarioProductoModal(cont)" data-toggle='modal' data-target="#inventarioProductoModal"><img class="imagen" src="assets/img/Iconos_productos/ico_unidades.png"></div>
+                  <div class="iconos_productos" (click)="eliminarProductoModal(cont)" data-toggle='modal' data-target="#EliminarProductoModal"><img class="imagen" src="assets/img/Iconos_productos/Ico_eliminar.png"></div>
                 </div>
               </td>
             </tr>
@@ -115,3 +115,148 @@
     </div>
   </div>
 </body>
+
+<div class="productoModal1">
+  <div class="modal" id="verDetalleProductoModal">
+    <div class="modal-dialog modal-dialog-detalle" role=" document">
+      <div class="modal-content modal-content-detalle">
+        <div class="modal-header modal-ficha modal-header-detalle">
+          <h5>Ficha técnica y especificaciones</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        
+        <div class="modal-body modal-body-detalle ">
+          <h6>{{nombreProducto}}</h6>
+          <p>Sku {{skuProducto}}</p>
+        <div class="container-ficha">
+          <table class="tabla-ficha">
+            <thead >
+            <tr>
+                <th style="width: 30%">
+                    Atributo
+                </th>
+                <th style="width: 70%">
+                    Detalle
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productoDetalle of vectorAtributosProducto">
+                <td>
+                  <div>
+                    <p>{{productoDetalle.atributo}}</p>
+                  </div>  
+                </td>
+                <td>
+                  <div>
+                    <p>{{productoDetalle.detalle}}</p>
+                  </div>  
+                </td>
+              </tr>           
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="productoModal2">
+  <div class="modal modal-inventario" id="inventarioProductoModal">
+    <div class="modal-dialog modal-dialog-inventario" role=" document">
+      <div class="modal-content modal-content-inventario">
+        <div class="modal-header modal-header-inventario">
+          <h5>Unidades disponibles</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        
+        <div class="modal-body modal-body-inventario ">
+          <h6>{{nombreProducto}}</h6>
+          <div class="inventario-tienda">
+            <p>Ciudad</p>     <h5>Bogotá</h5> 
+            <p>Tienda</p>     <h5>{{nombreAlmacen}}</h5> 
+            <p>Unidades</p>   <h5>{{cantidad}}</h5>
+          </div>  
+          <div class="otras-tiendas">
+            <h6>Otras tiendas</h6>
+            <p>Ciudad</p>     
+            <div class="form-group select-tiendas col-md-4">
+                <select class="form-control form-control-sm" id="select-ciudad">
+                  <option>Bogotá</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+          </div>
+        <div class="container-tiendas">
+          <table class="tabla-tiendas table-striped">
+            <thead >
+            <tr>
+                <th style="width: 30%">
+                    Código
+                </th>
+                <th style="width: 40%">
+                    Tienda
+                </th>
+                <th style="width: 30%">
+                    Unidades
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productoTiendas of inventarioTiendas">
+                <td>
+                  <div>
+                    <p>{{productoTiendas.idAlmacen}}</p>
+                  </div>  
+                </td>
+                <td>
+                  <div>
+                    <p>{{productoTiendas.nombre}}</p>
+                  </div>  
+                </td>
+                <td>
+                  <div>
+                    <p>{{productoTiendas.cantidad}}</p>
+                  </div>  
+                </td>
+              </tr>           
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="productoModal3">
+  <div class="modal" id="EliminarProductoModal">
+    <div class="modal-dialog " role=" document">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <img src="assets/img/Modal/Eliminar.png"> 
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        
+        <div class="modal-body ">
+          <p>Se eliminará el producto:</p>
+          <h6>{{nombreProducto}}</h6>
+          <p>Sku {{skuProducto}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnCancelar" data-dismiss="modal" >Cancelar</button>
+          <button type="button" class="btnAceptar" id="limpiar" data-dismiss="modal" (click)="eliminarProducto()">Aceptar</button>
+        </div>
+    </div>
+  </div>
+</div>
+</div>

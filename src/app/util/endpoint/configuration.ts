@@ -27,6 +27,7 @@ export class Configuration {
     private puertoEmpleado = '9181/';
     private puertoProducto = '9182/';
     private puertoCarrito = '9183/';
+    private puertoConsultasGenericas = '9186/';
 
     /**
      * URLs de apis establecitas para la consultar, guardar o cambiar estados del cliente.
@@ -50,6 +51,11 @@ export class Configuration {
     */
    private apiUrlConAlmacen = 'carrito/api/carrito/consultar/almacen';
 
+   /**
+    * URLs de apis establecitas para la consultar, guardar o cambiar estados del productos.
+    */
+   private apiUrlConsultaMultiple = 'integracion/api/consulta/multiple';
+
     /**
     * Estrctura completa apis Cliente.
     */
@@ -71,4 +77,10 @@ export class Configuration {
     * Estructura consumo servicio de consulta de tienda
     */
     public consultarTiendaPorIpApiUrl = this.servidor + this.puertoCarrito + this.apiUrlConAlmacen;
+
+    /**
+    * Estructura consumo servicio de consulta generica
+    */
+    public consultaInventarioUrl = this.servidor + this.puertoConsultasGenericas + this.apiUrlConsultaMultiple;
+    
 }
